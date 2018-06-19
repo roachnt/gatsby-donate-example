@@ -110,16 +110,16 @@ class IndexPage extends React.Component {
 }
 
 const Response = props => (
-  <div
-    className={css`
-      color: ${props.responseColor};
-      margin-top: 20px;
-      text-align: center;
-    `}
-  >
+  <div className={responseStyle(props.responseColor)}>
     {props.responseMessage}
   </div>
 )
+
+const responseStyle = responseColor => css`
+  color: ${responseColor};
+  margin-top: 20px;
+  text-align: center;
+`
 
 const Amount = props => (
   <div

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { cx, css } from 'emotion'
-import {
-  PaymentRequestButtonElement,
-  injectStripe,
-} from 'react-stripe-elements'
+import { injectStripe } from 'react-stripe-elements'
 
-import { submitTokenAction } from '../helpers/stripeHelper'
+import {
+  submitTokenAction,
+  paymentRequestConfig,
+} from '../helpers/stripeHelper'
 
 class PaymentRequestForm extends Component {
   state = {
@@ -14,16 +14,7 @@ class PaymentRequestForm extends Component {
   }
   // For full documentation of the available paymentRequest options, see:
   // https://stripe.com/docs/stripe.js#the-payment-request-object
-  paymentRequest = this.props.stripe.paymentRequest({
-    country: 'US',
-    currency: 'usd',
-    total: {
-      label: 'Donation',
-      amount: this.props.amount * 100,
-    },
-    requestPayerName: true,
-    requestPayerEmail: true,
-  })
+  paymentRequest = this.props.stripe.paymentRequest(paymentRequestConfig)
 
   componentDidMount() {
     this.paymentRequest.on('token', ({ complete, token, ...data }) => {
@@ -110,24 +101,3 @@ const donateButtonStyle = css`
     }
   }
 `
-
-/*  
-      <PaymentRequestButtonElement
-        onClick={() =>
-          this.paymentRequest.update({
-            total: {
-              label: 'Donation',
-              amount: this.props.amount * 100,
-            },
-          })
-        }
-        paymentRequest={this.paymentRequest}
-        className="PaymentRequestButton"
-        style={{
-          paymentRequestButton: {
-            type: 'donate',
-            theme: 'dark',
-            height: '64px',
-          },
-        }}
-      /> */

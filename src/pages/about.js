@@ -1,60 +1,14 @@
 import React from 'react'
-import Link from 'gatsby-link'
 import { css } from 'emotion'
 
 const AboutPage = () => (
-  <div
-    className={css`
-      height: 90vh;
-      display: flex;
-      flex: 1;
-      justify-content: center;
-      align-items: center;
-      @media (max-width: 768px) {
-        display: block;
-      }
-    `}
-  >
-    <div
-      className={css`
-        background-size: 100%;
-        background-image: linear-gradient(120deg, #7c66ff, #c074fd);
-        padding: 20px;
-        border-radius: 5px;
-        color: white;
-        @media (max-width: 768px) {
-          border-radius: 0;
-        }
-      `}
-    >
-      <h1
-        className={css`
-          font-family: Pacifico;
-          text-align: center;
-          margin: 0;
-        `}
-      >
-        welcome to don8t!
-      </h1>
-      <p
-        className={css`
-          text-align: center;
-          margin: 0;
-          color: lightgreen;
-        `}
-      >
+  <div className={aboutContainerStyle}>
+    <div className={aboutContentStyle}>
+      <h1 className={titleStyle}>welcome to don8t!</h1>
+      <p className={subtitleStyle}>
         <i>a proof of concept</i>
       </p>
-      <div
-        className={css`
-          width: 750px;
-          margin-top: 25px;
-          line-height: 30px;
-          @media (max-width: 768px) {
-            width: 100%;
-          }
-        `}
-      >
+      <div className={contentStyle}>
         don8t is a sample react application that uses stripe, an online
         transaction service, to accept donations over the browser in a simple
         and elegant way using the payment request api. You'll notice that don8t
@@ -69,33 +23,7 @@ const AboutPage = () => (
         <Important>can't</Important>and <Important>won't</Important> accept real
         debit or credit cards (Unless you use apple pay, and it still won't
         charge you!). If you want to try don8t, I suggest using one of the{' '}
-        <a
-          className={css`
-            text-decoration: none;
-            color: blue;
-            transition: 0.5s;
-            position: relative;
-            &:after {
-              transition: 0.5s;
-              content: '';
-              position: absolute;
-              display: inline-block;
-              background: blue;
-              width: 0px;
-              height: 2px;
-              left: 0;
-              right: 0;
-              bottom: 0;
-              margin: 0 auto;
-            }
-            &:hover {
-              &:after {
-                width: 130px;
-              }
-            }
-          `}
-          href="https://stripe.com/docs/testing"
-        >
+        <a className={linkStyle} href="https://stripe.com/docs/testing">
           test card numbers
         </a>, like <Important>4242 4242 4242 4242</Important>. If you use a test
         card, you can put in any expiration date and cvc number and your
@@ -105,12 +33,76 @@ const AboutPage = () => (
   </div>
 )
 
+const aboutContainerStyle = css`
+  height: 90vh;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 768px) {
+    display: block;
+  }
+`
+
+const aboutContentStyle = css`
+  background-size: 100%;
+  background-image: linear-gradient(120deg, #7c66ff, #c074fd);
+  padding: 20px;
+  border-radius: 5px;
+  color: white;
+  @media (max-width: 768px) {
+    border-radius: 0;
+  }
+`
+
+const titleStyle = css`
+  font-family: Pacifico;
+  text-align: center;
+  margin: 0;
+`
+
+const subtitleStyle = css`
+  text-align: center;
+  margin: 0;
+  color: lightgreen;
+`
+
+const contentStyle = css`
+  width: 750px;
+  margin-top: 25px;
+  line-height: 30px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`
+
+const linkStyle = css`
+  text-decoration: none;
+  color: blue;
+  transition: 0.5s;
+  position: relative;
+  &:after {
+    transition: 0.5s;
+    content: '';
+    position: absolute;
+    display: inline-block;
+    background: blue;
+    width: 0px;
+    height: 2px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+  }
+  &:hover {
+    &:after {
+      width: 130px;
+    }
+  }
+`
+
 const Important = ({ children }) => (
-  <b
-    className={css`
-      color: lightgreen;
-    `}
-  >
+  <b style={{ color: 'lightgreen' }}>
     <i>{children} </i>
   </b>
 )

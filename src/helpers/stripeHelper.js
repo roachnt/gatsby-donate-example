@@ -42,3 +42,14 @@ export const stripeCheckoutConfig = (
         .catch(err => checkoutErrorHandler(err))
     },
   })
+
+export const paymentRequestConfig = {
+  country: 'US',
+  currency: 'usd',
+  total: {
+    label: 'Donation',
+    amount: this.props.amount * 100,
+  },
+  requestPayerName: true,
+  requestPayerEmail: true,
+}
